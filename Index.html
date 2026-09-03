@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CVForge — Générateur de CV</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="logo">CV</div>
+            <span>CVForge</span>
+        </div>
+
+        <div class="actions">
+            <button id="newBtn" class="button secondary">
+                Nouveau
+            </button>
+
+            <button id="saveBtn" class="button secondary">
+                Sauvegarder
+            </button>
+
+            <button id="printBtn" class="button primary">
+                Exporter en PDF
+            </button>
+        </div>
+
+    </header>
+
+
+    <main class="app">
+
+        <!-- ÉDITEUR -->
+        <section class="editor">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h1>Votre CV</h1>
+                        <p>
+                            Remplissez les informations pour créer votre CV.
+                        </p>
+                    </div>
+
+                    <span id="savedState">
+                        Prêt
+                    </span>
+                </div>
+
+
+                <!-- INFORMATIONS PERSONNELLES -->
+
+                <section class="form-section">
+
+                    <h2>Informations personnelles</h2>
+
+                    <div class="form-grid">
+
+                        <label>
+                            Prénom
+                            <input
+                                type="text"
+                                data-field="firstName"
+                                placeholder="Jean"
+                            >
+                        </label>
+
+                        <label>
+                            Nom
+                            <input
+                                type="text"
+                                data-field="lastName"
+                                placeholder="Dupont"
+                            >
+                        </label>
+
+                        <label>
+                            Titre
+                            <input
+                                type="text"
+                                data-field="jobTitle"
+                                placeholder="Développeur web"
+                            >
+                        </label>
+
+                        <label>
+                            Ville
+                            <input
+                                type="text"
+                                data-field="city"
+                                placeholder="Paris"
+                            >
+                        </label>
+
+                        <label>
+                            Email
+                            <input
+                                type="email"
+                                data-field="email"
+                                placeholder="jean@example.com"
+                            >
+                        </label>
+
+                        <label>
+                            Téléphone
+                            <input
+                                type="tel"
+                                data-field="phone"
+                                placeholder="+33 6 00 00 00 00"
+                            >
+                        </label>
+
+                        <label>
+                            Site / LinkedIn
+                            <input
+                                type="text"
+                                data-field="website"
+                                placeholder="linkedin.com/in/jean"
+                            >
+                        </label>
+
+                        <label>
+                            Couleur
+                            <select id="accent">
+                                <option value="#2563eb">Bleu</option>
+                                <option value="#7c3aed">Violet</option>
+                                <option value="#0f766e">Émeraude</option>
+                                <option value="#b45309">Ambre</option>
+                                <option value="#be123c">Rose</option>
+                            </select>
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PROFIL -->
+
+                <section class="form-section">
+
+                    <h2>Profil</h2>
+
+                    <label>
+
+                        Présentation
+
+                        <textarea
+                            data-field="summary"
+                            rows="5"
+                            placeholder="Présentez votre profil en quelques lignes..."
+                        ></textarea>
+
+                    </label>
+
+                </section>
+
+
+                <!-- EXPÉRIENCES -->
+
+                <section class="form-section">
+
+                    <div class="section-header">
+
+                        <h2>Expériences</h2>
+
+                        <button
+                            id="addExperience"
+                            class="button add"
+                        >
+                            + Ajouter
+                        </button>
+
+                    </div>
+
+                    <div id="experiences"></div>
+
+                </section>
+
+
+                <!-- FORMATIONS -->
+
+                <section class="form-section">
+
+                    <div class="section-header">
+
+                        <h2>Formation</h2>
+
+                        <button
+                            id="addEducation"
+                            class="button add"
+                        >
+                            + Ajouter
+                        </button>
+
+                    </div>
+
+                    <div id="education"></div>
+
+                </section>
+
+
+                <!-- COMPÉTENCES -->
+
+                <section class="form-section">
+
+                    <div class="section-header">
+
+                        <h2>Compétences</h2>
+
+                        <button
+                            id="addSkill"
+                            class="button add"
+                        >
+                            + Ajouter
+                        </button>
+
+                    </div>
+
+                    <div id="skills"></div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- APERÇU -->
+
+        <section class="preview-container">
+
+            <div class="preview-toolbar">
+
+                <span>
+                    Aperçu du CV
+                </span>
+
+                <span class="paper-size">
+                    A4
+                </span>
+
+            </div>
+
+
+            <article id="resume" class="resume">
+
+                <!-- COLONNE GAUCHE -->
+
+                <aside class="resume-sidebar">
+
+                    <div
+                        id="avatar"
+                        class="avatar"
+                    >
+                        JD
+                    </div>
+
+
+                    <div
+                        id="sideContact"
+                        class="contact"
+                    ></div>
+
+
+                    <div class="sidebar-section">
+
+                        <h3>
+                            Compétences
+                        </h3>
+
+                        <ul id="sideSkills"></ul>
+
+                    </div>
+
+                </aside>
+
+
+                <!-- CONTENU PRINCIPAL -->
+
+                <div class="resume-content">
+
+                    <header class="resume-header">
+
+                        <h1 id="rName">
+                            Jean Dupont
+                        </h1>
+
+                        <p id="rTitle">
+                            Développeur web
+                        </p>
+
+                    </header>
+
+
+                    <!-- PROFIL -->
+
+                    <section
+                        id="summarySection"
+                        class="resume-section"
+                    >
+
+                        <h2>
+                            Profil
+                        </h2>
+
+                        <p id="rSummary"></p>
+
+                    </section>
+
+
+                    <!-- EXPÉRIENCE -->
+
+                    <section class="resume-section">
+
+                        <h2>
+                            Expérience
+                        </h2>
+
+                        <div id="rExperience"></div>
+
+                    </section>
+
+
+                    <!-- FORMATION -->
+
+                    <section class="resume-section">
+
+                        <h2>
+                            Formation
+                        </h2>
+
+                        <div id="rEducation"></div>
+
+                    </section>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <script src="app.js"></script>
+
+</body>
+                                      </html>
